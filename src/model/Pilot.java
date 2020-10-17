@@ -1,6 +1,5 @@
 package model;
 public class Pilot{		
-	Team squad;
 	//Atributes
 	private String name;
 	private int age;
@@ -14,14 +13,6 @@ public class Pilot{
 		scores= new int [races];
 	}
 	//Setters and getters
-	//set and get of squad
-	public void setSquad(Team squad){
-		this.squad=squad;
-	}
-	public Team getSquad (){
-		return squad;
-	}
-
 	//Set and get of name
 	public void setName(String name){
 		this.name=name;
@@ -62,7 +53,6 @@ public class Pilot{
 		}
 		average= time/races;
 	return average;
-
 	}
 	
 	

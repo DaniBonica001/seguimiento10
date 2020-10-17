@@ -62,22 +62,22 @@ public class Championship{
 						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
 						
 					}else if (team==3){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.REDBULL_RACING,races);
 						
 					}else if (team==4){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.MERCEDES_AMG,races);
 						
 					}else if (team==5){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.RACING_POINT,races);
 						
 					}else if (team==6){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.ALFA_ROMEO,races);
 						
 					}else if (team==7){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.RENAULT,races);
 						
 					}else if (team==8){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.WILLIAMS,races);
 						
 					}else{
 						message2="Error.No se encontro el equipo";
@@ -94,7 +94,26 @@ public class Championship{
 	return message+message2;
 	}
 	
-	
+	public String showAverageTimes(){
+	String message="";
+	int segundos,min,horas,seg;	
+	int time;
+	double average;
+		for (int i=0;i<pilots.length;i++){
+			average=pilots[i].calculateAverage(races);			
+			if (average<=60){
+				message="El promedio del piloto "+pilots[i]+" es de "+average+" segundos";
+			}else{
+				segundos=(int)average%60;
+				seg=(int)average/60;
+				min=(int)seg%60;
+				horas=(int)seg/60;
+				message="El promedio del piloto "+pilots[i]+" es de "+horas+" horas"+min+" minutos"+segundos+" segundos";
+			}
+		}
+	return message;
+
+	}
 	
 
 
