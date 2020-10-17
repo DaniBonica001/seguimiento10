@@ -35,7 +35,7 @@ public class Championship{
 		Pilot objPilot=null;
 		boolean find=false;
 		for (int i=0;i<pilots.length && !find;i++){
-			if (pilots[i].getName().equalsIgnoreCase(name)){
+			if (pilots[i]!=null && pilots[i].getName().equalsIgnoreCase(name)){
 				objPilot=pilots[i];
 				find=true;
 			}
@@ -43,7 +43,7 @@ public class Championship{
 	return objPilot;
 	}
 
-	public String addPilot(String name,int age,int team){
+	public String addPilot(String name,int age,int team,int []competition ){
 		
 		Pilot findPilot=findPilot(name);
 		boolean exit=false;
@@ -56,28 +56,28 @@ public class Championship{
 				if (pilots[i]==null){								
 					
 					if (team==1){
-						pilots[i]= new Pilot (name,age,Team.SCUDERIA_FERRARI,races);
+						pilots[i]= new Pilot (name,age,Team.SCUDERIA_FERRARI,races,competition);
 						
 					}else if (team==2){
-						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races);
+						pilots[i]= new Pilot (name,age,Team.MCLAREN_F1_TEAM,races,competition);
 						
 					}else if (team==3){
-						pilots[i]= new Pilot (name,age,Team.REDBULL_RACING,races);
+						pilots[i]= new Pilot (name,age,Team.REDBULL_RACING,races,competition);
 						
 					}else if (team==4){
-						pilots[i]= new Pilot (name,age,Team.MERCEDES_AMG,races);
+						pilots[i]= new Pilot (name,age,Team.MERCEDES_AMG,races,competition);
 						
 					}else if (team==5){
-						pilots[i]= new Pilot (name,age,Team.RACING_POINT,races);
+						pilots[i]= new Pilot (name,age,Team.RACING_POINT,races,competition);
 						
 					}else if (team==6){
-						pilots[i]= new Pilot (name,age,Team.ALFA_ROMEO,races);
+						pilots[i]= new Pilot (name,age,Team.ALFA_ROMEO,races,competition);
 						
 					}else if (team==7){
-						pilots[i]= new Pilot (name,age,Team.RENAULT,races);
+						pilots[i]= new Pilot (name,age,Team.RENAULT,races,competition);
 						
 					}else if (team==8){
-						pilots[i]= new Pilot (name,age,Team.WILLIAMS,races);
+						pilots[i]= new Pilot (name,age,Team.WILLIAMS,races,competition);
 						
 					}else{
 						message2="Error.No se encontro el equipo";
@@ -94,23 +94,26 @@ public class Championship{
 	return message+message2;
 	}
 	
-	public String showAverageTimes(){
+	public String showAverageTimes(String name){
 	String message="";
 	int segundos,min,horas,seg;	
 	int time;
-	double average;
-		for (int i=0;i<pilots.length;i++){
-			average=pilots[i].calculateAverage(races);			
-			if (average<=60){
-				message="El promedio del piloto "+pilots[i]+" es de "+average+" segundos";
-			}else{
-				segundos=(int)average%60;
-				seg=(int)average/60;
-				min=(int)seg%60;
-				horas=(int)seg/60;
-				message="El promedio del piloto "+pilots[i]+" es de "+horas+" horas"+min+" minutos"+segundos+" segundos";
-			}
+	double average=0;
+	Pilot findPilot=findPilot(name);
+	if (findPilot==null){
+		message="Error. No se encontro el piloto";		
+	}else{
+		if(findPilot.calculateAverage(races)<=60){
+			message="El promedio del piloto "+findPilot.getName()+" es de "+average+" segundos";
+		}else{
+			segundos=(int)average%60;
+			seg=(int)average/60;
+			min=(int)seg%60;
+			horas=(int)seg/60;
+			message="El promedio del piloto "+findPilot.getName()+" es de "+horas+" horas"+min+" minutos"+segundos+" segundos";
 		}
+
+	}	
 	return message;
 
 	}

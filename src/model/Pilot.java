@@ -6,7 +6,7 @@ public class Pilot{
 	private Team team;
 	private int [] scores;
 	//Methods
-	public Pilot (String pName,int pAge, Team pTeam,int races){
+	public Pilot (String pName,int pAge, Team pTeam,int races,int[]scores){
 		name=pName;
 		age=pAge;
 		team=pTeam;
@@ -46,12 +46,15 @@ public class Pilot{
 	}
 
 	public double calculateAverage(int races){
-		double average=0;
-		int time=0;
-		for (int i=0;i<scores.length;i++){
-			time+=scores[i];
-		}
-		average= time/races;
+		double average;
+		int total=0;
+		if (scores!=null){
+			for (int i=0;i<scores.length;i++){			
+				total+=scores[i];			
+			}
+		}		
+		
+		average= total/races;
 	return average;
 	}
 	

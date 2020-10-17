@@ -10,38 +10,43 @@ public class Main{
 
 	//Methods
 	public Main(){
+		System.out.println("Registro de campeonato");
 		lector = new Scanner(System.in);
 		createChampion();
 	}
 
 		public static void main(String[] args) {
-			System.out.println("Iniciando la aplicación");
+			System.out.println("Iniciando la aplicacion");
 			Main objMain = new Main();	
 
-			System.out.println("Registro de campeonato");
+			
 			System.out.println("Registro de pilotos");			
 			int allow=0;
 
-			while(allow!=0){
-				objMain.showMenu();
+			do{
+				allow=objMain.showMenu();
 				if (allow==1){
 					objMain.addPilot();				
-				}else{
+				}else if (allow==2){
+					objMain.showAverageTimes();
+				}			
+			}while (allow!=0);
 
-				}
-				
-			}		
+			System.out.println("¡Bye!");	
 		}
 
 		public int showMenu(){
 			int allow=0;
-			System.out.println("Ingrese:"+"\n1. Para ingresar un piloto"+"2.Para ver el promedio del tiempo en las carreras de cada piloto");
+			System.out.println("Ingrese:"+
+				"\n(1)Para ingresar un piloto"+
+				"\n(2)Para ver el promedio del tiempo en las carreras de cada piloto"+
+				"\n(0)Para sair");
 			allow = lector.nextInt();lector.nextLine();
 		return allow;
 		}
 
 		public void createChampion(){
-			System.out.println("Ingrese el año del campeonato");
+			System.out.println("Ingrese el ano del campeonato");
 			int year = lector.nextInt();
 
 			System.out.println("Ingrese la cantidad de grandes premios del campeonato");
@@ -78,12 +83,18 @@ public class Main{
 			}
 
 			String message;
-			message=tournament.addPilot(name,age,team);
+			message=tournament.addPilot(name,age,team,competition);
 			System.out.println(message);
+		}
+
+		public void showAverageTimes(){
+			System.out.println("De que piloto quiere conocer los tiempos");
+            String name=lector.nextLine();
+			System.out.println(tournament.showAverageTimes(name));
 		}
 
 
 
-//SCUDERIA_FERRARI, MCLAREN_F1_TEAM, REDBULL_RACING, MERCEDES_AMG, RACING_POINT, ALFA_ROMEO, RENAULT,WILLIAMS;
+
 
 }
